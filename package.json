@@ -10,15 +10,26 @@
     "dev": "node --env-file=.env --watch src/web/index.js",
     "build": "electron-builder"
   },
+  "build": {
+    "appId": "com.exaedro.bibliotech",
+    "productName": "Bibliotech",
+    "copyright": "Copyright © 2023 Bibliotech",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "src/index.js",
+      "package.json"
+    ]
+  },
   "author": "Exaedro",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "bcrypt": "5.0.0",
+    "bcrypt": "5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "electron": "^32.0.2",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "express-validator": "^7.2.0",
@@ -27,5 +38,9 @@
     "mysql2": "^3.11.0",
     "npm-run-all": "^4.1.5",
     "timeago.js": "4.0.2"
+  },
+  "devDependencies": {
+    "electron": "^33.0.2",
+    "electron-builder": "^25.1.8"
   }
 }

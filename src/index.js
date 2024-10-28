@@ -2,12 +2,12 @@ import { app, BrowserWindow } from 'electron'
 import path from 'node:path'
 import dotenv from 'dotenv/config'
 
-import webApp from './web/index.js'
+// import webApp from './web/index.js'
 
 // Configuracion
 const width = Number(process.env.WINDOW_WIDTH) || 1600
 const height = Number(process.env.WINDOW_HEIGHT) || 900
-const webUrl = process.env.WEB_URL
+const webUrl = process.env.WEB_URL || "http://localhost:4000/"
 
 // Funcion para crear la ventana
 const createWindow = () => {
@@ -15,8 +15,13 @@ const createWindow = () => {
       width,
       height,
       webPreferences: {
-        preload: path.join(process.cwd(), 'src/web/public/js/preload.js')
-      }
+        preload: path.join(process.cwd(), 'src/web/public/js/preload.js'),
+        devTools: false,
+
+      },
+      darkTheme: true,
+      titleBarOverlay: false,
+      autoHideMenuBar: true 
     })
 
     win.loadURL(webUrl)

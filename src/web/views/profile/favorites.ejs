@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-userId="<%- userProfile.id %>">
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <main class="perfil">
+        <section class="info">
+            <img src="<%- userProfile.image %>">
+            <h3><%- userProfile.username %></h3>
+        </section>
+        <section class="libros">
+            <article>
+                <% if(userProfile.username == user.username) { %>
+                    <h2>Todos mis favoritos</h2>
+                <%} else { %>
+                    <h2>Favoritos</h2>
+                <%}%>
+                <div class="librosContenedor" id="libros" data-bookType="favorite">
+                    <% if(books.length == 0) {%>
+                        <p style="text-align: left;">No tienes libros en esta lista.</p>
+                    <% } else {%>
+                        <% books.forEach(book => {%>
+                            <div class="libro">
+                                <figure>
+                                    <a href="/book/<%- book.id %>">
+                                        <img src="<%- book.image %>" alt="<%- book.title %>">
+                                    </a>
+                                    <% if(userProfile.username == user.username) { %>
+                                        <div class="acciones">
+                                            <i class="fa-solid fa-x borrar" data-bookId="<%- book.id %>"></i>
+                                        </div>
+                                    <% } %>
+                                </figure>
+                                <a href="/book/<%- book.id %>">
+                                    <p><%- book.title %></p>
+                                </a>
+                            </div>
+                        <%})%>
+                    <% } %>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="footerContainer">
+        <%- include('../partials/footer.ejs') %>
+    </footer>
+    <script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+      <%- include('partials/navbar.ejs') %>
+    </header>
+    <div class="wrapper">
+      <section class="slider">
+        <div class="swiffy-slider slider-nav-autohide slider-nav-autoplay slider-nav-autopause slider-item-snapstart">
+          <ul class="slider-container" style="overflow-x: none;">
+            <% mostVisited.forEach(book => { %>
+              <a href="/book/<%- book.id %>">
+                <li>
+                  <div class="texto">
+                    <h3><%- book.title %></h3>
+                    <p><%- book.synopsis %></p>
+                  </div>
+                  <img src="<%- book.image %>" alt="<%- book.title %>" loading="lazy">
+                </li>
+              </a>
+            <% })%>
+          </ul>
+          <div class="slider-indicators">
+              <% mostVisited.forEach(book => { %>
+                <button></button>
+              <% }) %>
+          </div>
+        </div>
+        <div class="historial">
+          <h2>Historial<% if(typeof user.userId != 'undefined' && userRecord.length > 0) { %><a href="/profile/myself/record" class="seeAll"><i class="fa-solid fa-eye"></i></a><% } %></h2>
+          <% if(userRecord.length > 0) { %>
+            <div class="historialContenedor">
+              <% userRecord.forEach(record => { %>
+                <a class="historialItem" href="/book/<%- record.book.id %>">
+                  <figure>
+                    <img src="<%- record.book.image %>" alt="<%- record.book.title %>" loading="lazy">
+                  </figure>
+                  <p><%- record.book.title %></p>
+                </a>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <p style="text-align: center;">No tienes historial de libros</p>
+          <% } %>
+        </div>
+      </section>
+      <main class="container">
+        <section>
+          <h2>Libros más vistos</h2>
+          <div class="series" id="series">
+            <% recents.forEach(book => { %>
+              <div class="serie">
+                <figure>
+                  <a href="/book/<%- book.id %>">
+                    <img src="<%- book.image %>" alt="<%- book.title %>" loading="lazy"/>
+                  </a>
+                </figure>
+                <div class="title">
+                  <a href="/book/<%- book.id %>"><%- book.title %></a>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </section>
+        <section>
+          <h2 class="centrar">Populares</h2>
+          <div class="populares">
+            <% mostLiked.forEach(book => { %>
+              <a href="/book/<%- book.id %>">
+                <div class="popular">
+                  <h3><%- book.title %></h3>
+                  <figure>
+                    <img
+                      src="<%- book.image %>"
+                      alt="<%- book.title %>"
+                      loading="lazy"
+                    />
+                  </figure>
+                </div>
+              </a>
+            <% })%>
+          </div>
+        </section>
+      </main>
+      <footer class="footerContainer">
+        <%- include('partials/footer.ejs') %>
+      </footer>
+    </div>
+  </body>
+  <script src="js/dropdown.js"></script>
+</html>

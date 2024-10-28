@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-bookId="<%- book[0].id %>" data-userId="<%- user.userId %>">
+  <head>
+    <%- include('partials/head.ejs') %>
+  </head>
+  <body>
+    <header>
+        <%- include('partials/navbar.ejs') %>
+    </header>
+    <div class="wrapper">
+      <main class="libroContainer">
+        <div class="libroIndividual">
+            <figure>
+                <img src="<%- book[0].image %>">
+                <%  if(user.role == 'admin') { %>
+                  <!-- Botón para editar el libro -->
+
+                  <a href="/panel/books/<%- book[0].id %>/edit" class="editar-libro-btn">Editar Libro</a>
+                <% } %>
+            </figure>
+            <div class="info">
+                <h1><%- book[0].title %> (<%- new Date(book[0].date).getFullYear() %>)</h1>
+                <h4>Sinopsis</h4>
+                <p><%- book[0].synopsis %></p>
+                <h4>Idioma</h4>
+                <p><%- book[0].language %></p>
+                <h4>Editorial</h4>
+                <p><%- book[0].publisher %></p>
+                <h4>Paginas</h4>
+                <p><%- book[0].pages %> en total</p>
+                <h4>Autor</h4>
+                <p><%- book[0].author %></p>
+
+                <h4>Géneros</h4>
+                <div class="generos">
+                    <% book[0].genres.forEach(genre => { %>
+                      <a href="/catalog?genre=<%- genre.id %>">
+                        <span class="genero"><%- genre.name %></span>
+                      </a>
+                    <%})%>
+                </div>      
+            </div>
+        </div>
+        <div class="notificacion" id="notificacion">
+          <i class="fa-solid fa-x"></i>
+          <p>Este libro ya esta añadido a tu lista de ver luego.</p>
+        </div>
+        <div class="acciones">
+          <div class="accion" id="espera">
+            <i class="fa-solid fa-star"></i>
+            <p>Ver luego</p>
+          </div>
+          <div class="accion" id="gustado">
+            <i class="fa-solid fa-heart"></i>
+            <p>Me gusta</p>
+          </div>
+          <div class="accion" id="favorito">
+            <i class="fa-solid fa-check"></i>
+            <p>Favorito</p>
+          </div>
+        </div>
+        <iframe class="pdf" src="<%- book[0].pdf %>" frameborder="0"></iframe>
+        <section class="comentarios">
+          <h2>Comentarios</h2>
+          <div id="comentario">
+            <textarea name="comentario" id="texto" placeholder="Tú opinion..."></textarea>
+            <p class="error hidden" id="commentError">Escribe algo en el recuadro...</p>
+            <div class="botones">
+              <button type="submit" id="enviarComentario">Comentar</button>
+            </div>
+          </div>
+          <hr>
+          <div class="todo">
+            <% comments.forEach(comment => { %>
+              <div class="comentario">
+                <div class="usuario">
+                  <a href="/profile/<%- comment.user.id %>">
+                    <img src="<%- comment.user.image %>" alt="<%- comment.user.name %>">
+                    <p><%- comment.user.username %> </p>
+                  </a>
+                  <span class="date"><%- format(comment.date) %></span>
+                  <% if(user.role == 'admin' || user.role == 'mod' || user.userId == comment.user.id) { %>
+                    <div class="modAcciones">
+                      <i class="fa-solid fa-x borrar" data-commentId="<%- comment.id %>"></i>
+                      <% if(user.userId == comment.user.id) { %>
+                        <i class="fa-solid fa-pen-to-square editar" data-commentId="<%- comment.id %>"></i>
+                      <% } %>
+                    </div>
+                  <% } %>
+                </div>
+                <div class="texto" data-commentId="<%- comment.id %>">
+                  <%- comment.comment %> 
+                  <% if(comment.edited) { %>
+                    <span class="editado">(editado)</span>
+                  <% } %>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </section>
+    </main>
+    <footer class="footerContainer">
+      <%- include('partials/footer.ejs') %>
+    </footer>
+    </div>
+    <script src="js/book.js"></script>
+  </body>
+</html>

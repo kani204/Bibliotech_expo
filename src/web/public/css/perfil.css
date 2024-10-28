@@ -1,0 +1,287 @@
+.perfil {
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    padding-top: 100px;
+}
+
+.perfil .info {
+    display: flex;
+    border: 1px solid var(--color-fondo-secundario);
+    border-radius: 5px;
+    padding: 15px;
+    height: min-content;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfil .info h4 {
+    margin-bottom: 10px;
+}
+
+.perfil .info img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+
+.perfil .info hr {
+    width: 70%;
+    border: 1px solid var(--color-fondo-secundario);
+    margin: 10px;
+}
+
+.perfil .info .editar-perfil a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: var(--color-primario);
+    color: var(--color-letra-secundario);
+}
+
+.perfil .info .editar-perfil p {
+    cursor: pointer;
+}
+
+.perfil .info .editar-perfil a:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.perfil article {
+    border: 1px solid var(--color-fondo-secundario);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.perfil .librosContenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.perfil .librosContenedor figure {
+    position: relative;
+    width: 180px;
+    height: 270px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.perfil .librosContenedor .libro {
+    border-radius: 5px;
+}
+
+.perfil .librosContenedor img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.perfil .librosContenedor img:hover {
+    transform: scale(1.1);
+}
+
+.perfil .librosContenedor p {
+    padding: 12px 0;
+    width: 180px;
+    text-align: center;
+}
+
+.perfil .botonVerTodo {
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: var(--color-primario);
+    display: inline-block;
+    color: var(--color-letra-secundario);
+}
+
+.perfil .botonVerTodo:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.perfil .noBookMessage {
+    text-align: center;
+    color: gray;
+    font-size: 20px;
+    width: 100%;
+    padding: 0 120px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil .accionContainer {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 100px;
+    border: 1px solid var(--color-fondo-secundario);
+    border-radius: 5px;
+}
+
+.perfil .acciones .borrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 50;
+    background-color: red;
+    color: #fff;
+    padding: 9px;
+    font-size: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.perfil .historial {
+    padding-top: 30px!important;
+}
+
+.perfil .historial .libro {
+    display: flex;
+    gap: 10px;
+    border: 0;
+    text-align: left;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+.perfil .historial .libro .info {
+    border: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.perfil .historial .libro .titulo {
+    font-size: 22px;
+    color: var(--color-letra);
+}
+
+.perfil .historial .libro .autor {
+    color: rgb(135, 135, 135);
+    font-size: 14px;
+}
+
+.perfil .historial .libro .sinopsis {
+    color: var(--color-letra);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.perfil .historial {
+    width: 700px;
+}
+
+.perfil .historial figure {
+    width: 200px;
+    height: 310px;
+}
+
+.perfil .historial img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.perfil .historial .lateral {
+    display: flex;
+    justify-content: space-between;
+    width: 490px;
+}
+
+.perfil .historial .acciones {
+    display: flex;
+    gap: 7px;
+}
+
+.perfil .historial .eliminar {
+    padding: 7px 10px;
+    border-radius: 5px;
+    width: 34px;
+    cursor: pointer;
+    height: 34px;
+    background-color: red;
+    color: #fff;
+}
+
+.perfil .historial .ver {
+    padding: 7px 10px;
+    border-radius: 5px;
+    background-color: #1cc88a;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.perfil .historial .noHistorialMessage {
+    color: gray;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.perfil {
+    position: relative;
+}
+
+.perfil .historialMenu {
+    position: absolute;
+    top: 9rem;
+    right: 9rem;
+    padding: 25px;
+    border: 1px solid var(--color-fondo-secundario);
+    border-radius: 5px;
+}
+
+.perfil .historialMenu .buscador {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.perfil .historialMenu .buscador::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-fondo-secundario);
+    position: absolute;
+    bottom: 0;
+}
+
+.perfil .historialMenu .buscador input {
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-size: 16px;
+    color: var(--color-letra);
+    background-color: transparent;
+    outline: none;
+}
+
+.perfil .historialMenu .buscador i {
+    font-size: 16px;
+}
+
+.perfil .historialMenu a {
+    transition: color 0.3s ease;
+}
+
+.perfil .historialMenu a:hover {
+    color: var(--color-primario);
+}

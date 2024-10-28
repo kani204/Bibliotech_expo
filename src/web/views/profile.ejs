@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    <%- include('partials/navbar.ejs') %>
+
+    <main class="perfil">
+        <section class="info">
+            <img src="<%- userProfile.image %>">
+            <h3><%- userProfile.username %></h3>
+            <hr>
+            <h4>
+                <% if (userProfile.role==1){ %>
+                    Usuario
+                <% } else if (userProfile.role==2) { %>
+                    Moderador
+                <% } else if (userProfile.role==3) { %>
+                    Administrador 
+                <% } else if (userProfile.role==4) { %>
+                    Propietario 
+                <% } %>
+            </h4>
+        
+            <% if(userProfile.username == user.username) { %>
+                <h4><%- userProfile.email %></h4>
+            <% } %>
+        
+            <% if(userProfile.username == user.username) { %>
+                <div class="editar-perfil">
+                    <a href="/profile/myself/edit" class="editar-libro-btn">
+                        <p>Editar perfil</p> <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </div>
+            <% } %>
+        </section>
+        <section class="libros">
+            <% if(likedBooks.length == 0 && favoriteBooks.length == 0 && seeLaterBooks.length == 0) {%>
+                <% if(userProfile.username == user.username) { %>
+                    <p class="noBookMessage">Agrega libros a tu lista de gustados, favoritos o leer mas tarde para verlos aquí.</p>
+                <%} else { %>
+                    <p class="noBookMessage"><%- userProfile.username %> no tiene libros añadidos en sus listas.</p>
+                <%}%>
+            <% } else {%>
+                <% if(likedBooks.length > 0) {%>
+                    <article>
+                        <% if(userProfile.username == user.username) { %>
+                            <h2>Mis me gusta</h2>
+                        <%} else { %>
+                            <h2>Gustados</h2>
+                        <%}%>
+                        <div class="librosContenedor">
+                            <% likedBooks.forEach(book => {%>
+                                <div class="libro">
+                                    <figure>
+                                        <a href="/book/<%- book.id %>">
+                                            <img src="<%- book.image %>" alt="<%- book.title %>">
+                                        </a>
+                                    </figure>
+                                    <a href="/book/<%- book.id %>">
+                                        <p><%- book.title %></p>
+                                    </a>
+                                </div>
+                            <%})%>
+                        </div>
+                        <a href="/profile/<%- userProfile.id %>/like" class="botonVerTodo">Ver todo</a>
+                    </article>
+                <%}%>
+                <% if(favoriteBooks.length > 0) {%>
+                    <article>
+                        <% if(userProfile.username == user.username) { %>
+                            <h2>Mis favoritos</h2>
+                        <%} else { %>
+                            <h2>Favoritos</h2>
+                        <%}%>
+                        <div class="librosContenedor">
+                            <% favoriteBooks.forEach(book => {%>
+                                <div class="libro">
+                                    <figure>
+                                        <a href="/book/<%- book.id %>">
+                                            <img src="<%- book.image %>" alt="<%- book.title %>">
+                                        </a>
+                                    </figure>
+                                    <a href="/book/<%- book.id %>">
+                                        <p><%- book.title %></p>
+                                    </a>
+                                </div>
+                            <%})%>
+                        </div>
+                        <a href="/profile/<%- userProfile.id %>/favorite" class="botonVerTodo">Ver todo</a>
+                    </article>
+                <%}%>
+                <% if(seeLaterBooks.length > 0) {%>
+                    <article>
+                        <% if(userProfile.username == user.username) { %>
+                            <h2>Leer mas tarde</h2>
+                        <%} else { %>
+                            <h2>Leerá mas tarde</h2>
+                        <%}%>
+                        <div class="librosContenedor">
+                            <% seeLaterBooks.forEach(book => {%>
+                                <div class="libro">
+                                    <figure>
+                                        <a href="/book/<%- book.id %>">
+                                            <img src="<%- book.image %>" alt="<%- book.title %>">
+                                        </a>
+                                    </figure>
+                                    <a href="/book/<%- book.id %>">
+                                        <p><%- book.title %></p>
+                                    </a>
+                                </div>
+                            <%})%>
+                        </div>
+                        <a href="/profile/<%- userProfile.id %>/see-later" class="botonVerTodo">Ver todo</a>
+                    </article>
+                <%}%>
+            <%}%>
+        </section>
+    </main>
+    <footer class="footerContainer">
+        <%- include('partials/footer.ejs') %>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,754 @@
+:root {
+    --color-fondo: #111;
+    --color-letra-docs: #fff;
+    --color-titulo-docs: #686fe8;
+    --color-separador-docs: #c1c6d1;
+    --color-fondo-alerta: rgb(255, 127, 127);
+    --color-letra-alerta: #fff;
+    --color-code-docs: #584773;
+    --color-code-docs-letra: #fafafc;
+    --color-code-docs-border: #e3e4e7;
+}
+
+[tema='light'] {
+    --color-letra-docs: #3b4151;
+    --color-titulo-docs: #3c4151;
+    --color-separador-docs: #c1c6d1;
+    --color-fondo-alerta: rgb(255, 127, 127);
+    --color-letra-alerta: #fff;
+    --color-code-docs: #584773;
+    --color-code-docs-letra: #fafafc;
+    --color-code-docs-border: #e3e4e7;
+}
+
+.panel aside {
+    background-color: var(--color-fondo);
+    width: 300px;
+    position: fixed;
+    height: 100%;
+    z-index: 700;
+    border-right: 1px solid var(--color-fondo-secundario);
+}
+
+.panel aside h2 {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.panel p {
+    color: var(--color-letra);
+}
+
+.panel .sideContainer {
+    margin: 0 15px 15px 0;
+}
+
+.panel aside .sideTitle {
+    padding-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.panel aside .sidemenu {
+    margin-top: 10px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--color-fondo-secundario);
+}
+
+.panel .sidemenu a {
+    padding: 10px;
+    color: var(--color-letra);
+    text-decoration: none;
+    width: 100%;
+}
+
+.panel .sidemenu a:hover {
+    background-color: var(--color-primario-hover);
+    color: var(--color-letra-secundario);
+}
+
+.panel main {
+    color: var(--color-fondo);
+    padding-left: 300px;
+}
+
+.panel nav {
+    height: 61px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+    border-bottom: 1px solid var(--color-fondo-secundario);
+    background-color: var(--color-fondo);
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 500;
+    width: 100%;
+}
+
+.panel h1 {
+    color: var(--color-letra);
+    margin: 40px 0 5px 40px;
+}
+
+.panel .contenedor {
+    padding-top: 60px;
+}
+
+.panel section {
+    color: var(--color-letra);
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-fondo-secundario);
+    border-radius: 8px;
+    overflow-x: scroll;
+    padding: 40px;
+    margin: 0 40px 40px 40px;
+}
+
+.panel .libros, .panel .usuarios {
+    max-height: 80vh;
+}
+
+.panel .libros p {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.panel .libros .libro {
+    width: 130px;
+    height: 230px;
+    position: relative;
+}
+
+.panel .libros figure {
+    width: 130px;
+    height: 200px;
+} 
+
+.panel .libros figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.panel .borrar i, .panel .ver i, .panel .editar i {
+    color: #fff!important;
+}
+
+.panel .borrar {
+    background-color: red;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    border: 0;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.panel .usuarios .borrar, .panel .usuarios .borrar-desabilitado {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.panel .usuarios .borrar-desabilitado {
+    background-color: rgb(166, 166, 166);
+    color: #3c4151;
+    opacity: 50%;
+    cursor: default;
+}
+
+
+.img-perfil{
+    width: 60px;
+}
+
+.panel .editar {
+    background-color: orange!important;
+    padding: 15px;
+    border-radius: 5px;
+    height: 30px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel .usuarios .editar, .panel .usuarios .editar-desabilitado {
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;
+}
+.panel .usuarios .editar-desabilitado {
+    background-color: rgb(166, 166, 166);
+    color: #3c4151;
+    opacity: 50%;
+    cursor: default;
+}
+
+.panel .editar-rol {
+    background-color: orange!important;
+    padding: 15px;
+    border-radius: 5px;
+    height: 30px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel .verde {
+    background-color: rgb(52, 214, 19)!important;
+}
+
+.panel .ver {
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+}
+
+.panel section h1 {
+    font-size: 44px;
+}
+
+.panel hr {
+    height: 1px;
+    background-color: var(--color-fondo-secundario);
+}
+
+.panel .editarLibroContainer .categorias {
+    display: grid;
+    margin-top: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: var(--color-letra);
+    margin-bottom: 15px;
+}
+
+.panel .editarLibroContainer input[type='checkbox'] {
+    margin: 0;
+}
+
+.panel .editarLibroContainer .categoria {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    margin: 10px 0;
+}
+
+
+dialog[open] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px solid var(--color-fondo-secundario);
+    background-color: var(--color-fondo);
+    color: var(--color-letra);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    scale: 1;
+    transition: scale .3s ease;
+
+    @starting-style {
+        scale: 0;
+    }
+}
+
+dialog {
+    transition: scale .3s ease, display .3s ease allow-discrete;
+    scale: 0;
+}
+
+dialog h3 {
+    text-align: center;
+    text-wrap: balance;
+}
+
+dialog .botones {
+    display: flex;
+    margin-top: 10px;
+    gap: 15px;
+}
+
+dialog .botones .cancelarEliminar {
+    padding: 10px 30px;
+    border-radius: 5px;
+    color: var(--color-letra-secundario);
+    margin-top: 10px;
+    width: 100%;
+    background-color: red;
+    cursor: pointer;
+    font-family: 'letra', system-ui, sans-serif;
+    font-size: 16px;
+}
+
+dialog .botones .confirmarEliminar {
+    padding: 10px 30px;
+    border-radius: 5px;
+    color: var(--color-letra-secundario);
+    margin-top: 10px;
+    background-color: var(--color-primario-hover);
+    cursor: pointer;
+    font-family: 'letra', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background .3s ease;
+}
+
+dialog .botones .confirmarEliminar:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.panel .buscador {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.panel .buscar {
+    padding: 10px;
+    background-color: var(--color-input);
+    outline: none;
+    border-radius: 5px;
+    color: var(--color-letra);
+}
+
+.panel .usuarios {
+    padding: 40px;
+    border: 1px solid var(--color-fondo-secundario);
+    border-radius: 5px;
+    overflow-x: scroll;
+    margin: 10px 40px 40px 40px;
+    color: var(--color-letra);
+}
+
+.panel table {
+    width: 100%;
+    max-width: none !important;
+    border-collapse: collapse !important;
+    border: 1px solid var(--color-fondo-secundario);
+}
+
+.panel table i {
+    color: #fff;
+}
+
+.panel  table th {
+    padding: 12px;
+    text-align: left;
+    background-color: var(--color-fondo-secundario);
+}
+
+.panel table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.panel .usuarios table .imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.panel .usuarios .boton {
+    color: var(--color-primario);
+}
+
+.panel .usuarios button {
+    background-color: transparent;
+    font-family: 'letra', system-ui, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.panel .usuarios .editar-rol:disabled {
+    background-color: var(--color-primario-disabled);
+    cursor: not-allowed;
+    box-shadow: none;
+    color: var(--color-letra-desactivado);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.panel-docs .docs {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--color-letra-docs);
+}
+
+.panel-docs .wrapper {
+    padding: 40px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.panel-docs table {
+    margin-bottom: 30px;
+}
+
+.panel-docs .docs .title {
+    margin: 0;
+    margin-bottom: 20px;
+    color: var(--color-titulo-docs);
+    font-size: 46px;
+    line-height: 125%;
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-separador-docs);
+}
+
+.panel-docs .docs .warning-authentication {
+    background-color: var(--color-fondo-alerta);
+    font-size: 13px;
+    color: var(--color-letra-alerta);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    max-height: 38px;
+    border-radius: 5px;
+}
+
+.panel-docs .docs .subtitle {
+    color: var(--color-primario);
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.panel-docs .strong {
+    font-weight: bold;
+}
+
+.panel-docs li {
+    margin-left: 20px;
+}
+
+.panel-docs li ul {
+    margin-bottom: 10px;
+}
+
+.panel-docs ul {
+    margin-bottom: 20px;
+}
+
+.panel-docs .nomargin {
+    margin-bottom: 0!important;
+}
+
+.panel-docs a {
+    text-decoration: underline var(--color-subrayado);
+}
+
+.panel-docs .docs .title-small {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--color-titulo-docs);
+    font-size: 36px;
+    line-height: 125%;
+    font-weight: 700;
+    padding-bottom: 10px;
+    margin: 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--color-separador-docs);
+}
+
+.panel-docs .docs .block {
+    margin-bottom: 60px;
+}
+
+.panel-docs .docs p code, .panel-docs .docs li code {
+    color: var(--color-code-docs);
+    background-color: var(--color-code-docs-letra);
+    border: 1px solid var(--color-code-docs-border);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: text;
+}
+
+.panel-docs .docs ol {
+    margin-bottom: 20px;
+}
+
+.panel-docs .docs ol code {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.panel-docs ol li {
+    margin-bottom: 7px;
+}
+
+.panel-docs .docs pre code {
+    position: absolute;
+    top: 0;
+    left: -330px;
+    color: var(--color-code-docs);
+}
+
+.panel-docs .docs pre {
+    position: relative;
+    height: 145px;
+    background-color: var(--color-code-docs-border);
+    border-color: var(--color-code-docs-border);
+    margin-bottom: 20px;
+}
+
+.panel-docs .docs  p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.panel-docs .docs h1 {
+    font-size: 32px;
+    margin-top: 20px;
+    border-bottom: 10px;
+    font-weight: 700;
+}
+
+.panel-docs .docs h2 {
+    font-size: 26px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.panel .errorContainer h1 {
+    margin-top: 0!important;
+    margin-left: 0!important;
+}
+
+.panel .errorContainer {
+    margin: 0!important;
+    padding: 0!important;
+    height: 96vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.panel .errorContainer p {
+    margin-bottom: 20px;
+}
+
+.panel .errorContainer a {
+    color: var(--color-primario);
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+.errorContainer a:hover {
+    color: var(--color-primario-hover);
+}
+
+.panel .editUserContainer {
+    padding: 40px;
+    border: 1px solid var(--color-fondo-secundario);
+    border-radius: 5px;
+    overflow-x: scroll;
+    margin: 10px 40px 40px 40px;
+    color: var(--color-letra);
+}
+
+.panel .editUserContainer form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.panel .editUserContainer .info h3 {
+    position: relative;
+    padding-bottom: 7px;
+    margin-bottom: 12px;
+}
+
+.panel .editUserContainer .info p {
+    margin-bottom: 10px;
+}
+
+.panel .editUserContainer .info h3::before {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+}
+
+.panel .editUserContainer .info input {
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.panel .editUserContainer select { 
+    background-color: var(--color-input);
+    color: var(--color-input-letra);
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.panel .editUserContainer article {
+    padding: 40px;
+    background-color: var(--color-formulario);
+    border-radius: 5px;
+}
+
+.panel .editUserContainer .data {
+    flex-grow: 1;
+}
+
+.panel .editUserContainer input {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    background-color: var(--color-input);
+    color: var(--color-input-letra);
+    outline: none;
+    border-radius: 5px;
+    margin: 10px 0 20px 0;
+}
+
+.panel .editUserContainer .info figure {
+    width: 200px;
+    height: 200px;
+}
+
+.panel .editUserContainer .info img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.panel .editUserContainer .info .image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panel .editUserContainer .changePassword h3.title {
+    padding-bottom: 15px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.panel .editUserContainer .changePassword h3.title:before {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+}
+
+.panel .editUserContainer .buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.panel .editUserContainer .data a {
+    background-color: transparent;
+    border: 1px solid red;
+    border-radius: 5px;
+    flex-grow: 1;
+    padding: 15px 35px;
+    text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.panel .editUserContainer .data a:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.panel .editUserContainer .data button {
+    font-family: 'letra', system-ui, sans-serif;
+    font-size: 16px;
+    background-color: var(--color-primario);
+    border-radius: 5px;
+    color: #fff;
+    flex-grow: 1;
+    padding: 15px 35px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.panel .editUserContainer .data button:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.panel-docs .together {
+    position: relative;
+    margin: 20px 0;
+}
+
+.panel-docs .together::before {
+    content: '';
+    border-left: 2px solid #686ee8;
+    padding-left: 20px;
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    left: -20px;
+}
+
+.panel-docs .together .subtitle {
+    padding-top: 20px;
+}
+
+.panel-docs picture img {
+    box-shadow: 0px 0px 14px 2px #979797d9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

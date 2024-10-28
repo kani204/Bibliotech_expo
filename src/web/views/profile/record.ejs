@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<%- include('../partials/head.ejs') %>
+	</head>
+	<body>
+		<%- include('../partials/navbar.ejs') %>
+
+		<main class="perfil">
+			<section>
+				<div class="historial">
+					<h1>Tu historial de libros visitados</h1>
+					<% if(books.length == 0) {%>
+						<p style="text-align: left;" class="noHistorialMessage">No tienes libros en tu historial de libros visitados.</p>
+					<% }  else { %>
+
+					<% books.forEach(data => { %>
+					<article class="libro">
+						<figure>
+							<a href="/book/<%- data.book.id %>">
+								<img
+									src="<%- data.book.image %>"
+									alt="<%- data.book.title %>"
+                                    loading="lazy"
+								/>
+							</a>
+						</figure>
+						<div class="lateral">
+							<div class="info">
+								<a href="/book/<%- data.book.id %>">
+									<h3 class="titulo">
+										<%- data.book.title %>
+									</h3>
+								</a>
+								<p class="autor"><%- data.book.author %></p>
+								<p class="sinopsis">
+									<%- data.book.synopsis %>
+								</p>
+								<div class="acciones">
+									<a
+										href="/book/<%- data.book.id %>"
+										class="ver"
+									>
+										<i class="fa-solid fa-eye"></i>
+									</a>
+									<button href="#" class="eliminar" data-recordId="<%- data.user.recordId %>">
+										<i class="fa-solid fa-trash"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</article>
+					<% }) %>
+                    <div class="historialMenu">
+                        <div class="buscador">
+                            <input type="text" id="buscador" placeholder="Buscar libro...">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <a href="#" id="borrarHistorial">
+                            <i class="fa-solid fa-x"></i>
+                            Borrar todo el historial
+                        </a>
+                    </div>
+					<% } %>
+				</div>
+			</section>
+		</main>
+		<footer class="footerContainer">
+			<%- include('../partials/footer.ejs') %>
+		</footer>
+
+		<dialog id="dialogEliminarHistorial">
+			<h3>¿Estás seguro que quieres borrar todo el historial?</h3>
+			<div class="botones">
+				<form method="dialog">
+					<button class="cancelarEliminar">Cancelar</button>
+				</form>
+				<button href="#" class="confirmarEliminar">Eliminar</button>
+			</div>
+		</dialog>
+
+		<script type="module">
+			const dialogEliminarHistorial = document.getElementById('dialogEliminarHistorial')
+			const botonEliminarHistorial = document.getElementById('borrarHistorial')
+			const botonConfirmarEliminarHistorial = document.querySelector('.confirmarEliminar')
+			const botonCancelarHistorial = document.querySelector('.cancelarEliminar')
+
+			botonEliminarHistorial.addEventListener('click', (e) => {
+				e.preventDefault()
+				dialogEliminarHistorial.showModal()
+			})
+
+			botonConfirmarEliminarHistorial.addEventListener('click', (e) => {
+				e.preventDefault()
+				dialogEliminarHistorial.close()
+			})
+
+			botonCancelarHistorial.addEventListener('click', (e) => {
+				e.preventDefault()
+				dialogEliminarHistorial.close()
+			})
+		</script>
+		<script type="module">
+			const buscador = document.getElementById('buscador')
+			const libros = document.querySelectorAll('.libro')
+
+			buscador.addEventListener('keydown', (e) => {
+				const buscadorValue = quitarAcentos({ texto: e.target.value.toLowerCase() })
+
+				libros.forEach(libro => {
+					const libroTitle = quitarAcentos({ texto: libro.querySelector('.titulo').innerText.toLowerCase() })
+					const libroAuthor = quitarAcentos({ texto: libro.querySelector('.autor').innerText.toLowerCase() })
+
+					console.log(libroTitle, libroAuthor, buscadorValue)
+
+					if(libroTitle.includes(buscadorValue) || libroAuthor.includes(buscadorValue)) {
+						libro.style.display = 'flex'
+					} else {
+						libro.style.display = 'none'
+					}
+				})
+			})
+
+			function quitarAcentos({ texto }) {
+				return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+			}
+		</script>
+
+		<script src="js/profile.js"></script>
+	</body>
+</html>

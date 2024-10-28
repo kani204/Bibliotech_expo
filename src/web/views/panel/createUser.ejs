@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('../partials/admin/head.ejs') %>
+</head>
+<body>
+    <div class="panel">
+        <%- include('../partials/admin/sidebar.ejs') %>
+        <main>
+            <%- include('../partials/admin/navbar.ejs') %>
+            <div class="contenedor">
+                <h1>Añadir Usuario</h1>
+                <form class="crearUsuarioContainer" id="crearUsuarioForm" action="/panel/users/create" method="POST" enctype="multipart/form-data">
+
+                    <!-- Imagen a un costado -->
+                    <div class="imagenPerfil">
+                        <figure>
+                            <img id="imagen" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
+                        </figure>
+                        <input type="file" id="imagenInput" name="image">
+                    </div>
+
+                    <!-- Formulario en el otro costado -->
+                    <div class="datos">
+                        <div class="columna">
+                            <h4>Nombre</h4>
+                            <input type="text" id="name" placeholder="Nombre del usuario" name="name" value="<% if(typeof errors != 'undefined') { %><%- values.name %><% } %>">
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'name')) { %>
+                                    <p class="error" id="nameError">Escribe un nombre válido.</p>
+                                <% } %>
+                            <% } %>
+
+                            <h4>Correo Electrónico</h4>
+                            <input type="email" id="email" placeholder="Correo electrónico" name="email" value="<% if(typeof errors != 'undefined') { %><%- values.email %><% } %>">
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'email')) { %>
+                                    <p class="error" id="emailError">Escribe un correo electrónico válido.</p>
+                                <% } %>
+                            <% } %>
+
+                            <h4>Rol</h4>
+                            <select name="role">
+                                <option value="1">Usuario</option>
+                                <option value="2">Moderador</option>
+                                <% if(user.role == 4){ %>
+                                    <option value="3">Administrador</option>
+                                <% } %>
+                            </select>
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'role')) { %>
+                                    <p class="error" id="roleError">Seleccinona un rol válido.</p>
+                                <% } %>
+                            <% } %>
+
+                            <hr>
+                            <h4>Contraseña</h4>
+                            <input type="password" id="password" placeholder="Contraseña" name="password" value="<% if(typeof errors != 'undefined') { %><%- values.password %><% } %>">
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'password')) { %>
+                                    <p class="error" id="passwordError"><%- errors.find(error => error.path == 'password').msg %></p>
+                                <% } %>
+                            <% } %>
+
+                            <h4>Confirmar Contraseña</h4>
+                            <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" name="confirmPassword" value="<% if(typeof errors != 'undefined') { %><%- values.confirmPassword %><% } %>">
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'password')) { %>
+                                    <p class="error" id="passwordNotMatch"><%- errors.find(error => error.path == 'password').msg %></p>
+                                <% } %>
+                            <% } %>
+
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="botones">
+                            <a href="/panel/users">Cancelar</a>
+                            <button type="submit">Agregar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/cambiarTema.js"></script>
+    <script src="js/previsualizarImagen.js"></script>
+</body>
+</html>

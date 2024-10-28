@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/admin/head.ejs') %>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+	</head>
+	<body>
+		<div class="panel panel-docs">
+			<%- include('../partials/admin/sidebar.ejs') %>
+			<main>
+				<%- include('../partials/admin/navbar.ejs') %>
+				<div class="contenedor">
+                    <!-- <div class="index">
+                        <a href="#introduction">Introducción</a>
+                        <a href="#books">Libros</a>
+                        <a href="#users">Usuarios</a>               
+                    </div> -->
+					<div class="wrapper">
+                        <div class="docs">
+                            <h1 class="title">Manual del programador</h1>
+                            <div class="block">
+                                <h2 id="introduction">Introducción</h2>
+                                <p>
+                                    Bienvenido al manual del programador de la Biblioteca Virtual “BiblioTech”. Este manual está diseñado para guiarte a través de las funcionalidades clave de la aplicación, desde el registro y la navegación, hasta la gestión de contenidos y el acceso a futuras características.
+                                </p>
+                            
+                                <h2>Requisitos para ejecutar la aplicación en local.</h2>
+                                <ul>
+                                    <li><span class="strong">Navegador Web:</span> Google Chrome, Firefox, Safari, o Microsoft Edge.</li>
+                                    <li><span class="strong">Conexión a Internet:</span> Recomendado.</li>
+                                    <li><span class="strong">XAMPP:</span> Simulador de servidores para conectar la base de datos.</li>
+                                    <li><span class="strong">NodeJS:</span> Entorno de ejecución para el backend.</li>
+                                </ul>
+
+                                <h2>Instalación y configuración</h2>
+                                <p>Para instalar la aplicación en local, sigue los siguientes pasos:</p>
+                                <ol>
+                                    <li>Clona el repositorio de GitHub. <a href="https://github.com/Exaedro/bibliotech" target="_blank" class="subtitle">Clickea aquí.</a></li>
+                                    <li>Abra XAMPP y encienda los servicios de <span class="strong">Apache</span> y <span class="strong">MySQL</span>.</li>
+                                    <li>Ingrese en phpMyAdmin, cree una base de datos llamada <code>bibliotech_v2</code> e importe el archivo <span class="strong">bibliotech_v2.sql</span> que se encuentra en la carpeta <span class="strong">sql</span></li>
+                                    <li>Abra la terminal y ejecuta el siguiente comando para instalar las dependencias necesarias: <code>npm i</code></li>
+                                    <li>Una vez instaladas las dependencias, ejecuta el siguiente comando para iniciar el servidor de desarrollo: <code>npm run dev</code></li>
+                                    <li>La aplicación se iniciará en <span class="strong">http://localhost:4000</span> y la API en <span class="strong">http://localhost:3000</span>.</li>
+                                </ol>
+                                <h3 class="subtitle">Configuración del archivo .env</h3>
+                                <p>Si necesitas cambiar la configuración para conectar tu servidor a la base de datos, puedes hacerlo facilmente desde el archivo <span class="strong">.env</span> que se encuentra en la raíz del proyecto cambiando los valores de las variables definidas allí.</p>
+                            </div>
+
+                            <div class="block">
+                                <h2 class="title-small">Archivos y organización de carpetas</h2>
+                                <div class="together">
+                                    <h3 class="subtitle">Estructura inicial</h3>
+                                    <picture>
+                                        <img src="img/docs/folderStructure-1.png" alt="Estructura de carpetas" loading="lazy">
+                                    </picture>
+                                    <h2>Explicaciones de las carpetas y archivos:</h2>
+                                    <ul>
+                                        <li>node_modules: Carpeta donde se encuentran los paquetes de Node.js instalados.</li>
+                                        <li>sql: Carpeta donde se encuentran los archivos de la base de datos.</li>
+                                        <li>src: Carpeta principal donde se encuentran los archivos de código fuente de la aplicación.</li>
+                                        <li>api: Carpeta donde se encuentran los archivos de código fuente de la API.</li>
+                                        <li>web: Carpeta donde se encuentran los archivos de código fuente de la aplicación web.</li>
+                                        <li>index.js: Archivo principal de la aplicación.</li>
+                                        <li>
+                                            <p>.env: Archivo donde se encuentran las variables de entorno de la aplicación.</p>
+                                            <picture>
+                                                <img src="img/docs/fileenv.png" alt="Archivo .env" loading="lazy">
+                                            </picture>
+                                        </li>
+                                        <li>.gitignore: Archivo que especifica los archivos que no deben ser rastreados por git.</li>
+                                        <li>package.json: Archivo que contiene la información de la aplicación, incluyendo las dependencias y scripts.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="together">
+                                    <h3 class="subtitle">Organización de la carpeta API</h3>
+                                    <p>La organización de esta carpeta está hecha con una arquitectura parecida a la de <strong>MVC</strong>, esta empieza en los modelos/servicios donde se obtiene los datos de la base de datos, luego en los controladores, y por ultimo en las rutas. En la carpeta <strong>utils</strong> se pueden encontrar funciones que pueden ser utiles en varios archivos o crear nuevas funciones si se necesita en algun momento.</p>
+                                    <picture>
+                                        <img src="img/docs/apiFolderStructure.png" alt="Estructura de la carpeta API" loading="lazy">
+                                    </picture>
+                                </div>
+
+                                <div class="together">
+                                    <h3 class="subtitle">Organización de la carpeta WEB</h3>
+                                    <p>Dentro de esta carpeta podras encontrar los archivos de todo lo relacionado con la aplicación web. El archivo <strong>index.js</strong> es el que inicia la aplicación, el archivo <strong>config.json</strong> contiene datos como el link de la API. En la carpeta <strong>public</strong> se encuentran los archivos de CSS, fuentes de texto, imagenes, scripts de javascript, y la carpeta uploads que son las imagenes que suben los usuarios al interactuar con la web. En la carpeta <strong>views</strong> se encuentran los archivos html que se utilizan para mostrar la página web, y en la carpeta <strong>routes</strong> se encuentran las rutas de la aplicación web.</p>
+                                    <picture>
+                                        <img src="img/docs/webFolderStructure.png" alt="Estructura de la carpeta WEB" loading="lazy">
+                                    </picture>
+                                </div>
+
+                                <!-- <p>El codigo de los modelos y los controladores estan programados orientado a objetos para su facilidad de mantenimiento y escalabilidad</p>
+                                <picture>
+                                    <img src="img/docs/controllers.png" alt="Archivo book.controller.js" loading="lazy">
+                                </picture> -->
+                            </div>
+
+                            <div class="block">
+                                <h2 class="title-small">API REST</h2>
+                                <p>Bibliotech incluye una API REST que ha sido cuidadosamente diseñada para garantizar su integración y utilización en una amplia variedad de aplicaciones. Esta te permitira interactuar con el sistema de manera eficiente y segura, facilitando la creación de aplicaciones personalizadas que puedan aprovechar al máximo las funcionalidades del proyecto. Puedes acceder a toda esta documentación en el siguiente enlace: <a class="subtitle" href="/panel/docs/api">CLICK AQUI</a></p>
+                            </div>
+
+                            <div class="block">
+                                <h2 class="title-small">Base de datos</h2>
+                                <h2>Tablas</h2>
+                                <h3 class="subtitle">Libros</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Titulo</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Título del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Autor</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Autor del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ISBN</td>
+                                            <td>VARCHAR(13)</td>
+                                            <td>ISBN del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FechaLanzamiento</td>
+                                            <td>DATE</td>
+                                            <td>Fecha de lanzamiento del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CantidadPaginas</td>
+                                            <td>INT</td>
+                                            <td>Cantidad de páginas del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Editorial</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Editorial del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sinopsis</td>
+                                            <td>TEXT</td>
+                                            <td>Sinopsis del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>imagen</td>
+                                            <td>VARCHAR(10000)</td>
+                                            <td>Imagen del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>pdf_link</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Enlace al PDF del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Idioma</td>
+                                            <td>VARCHAR(50)</td>
+                                            <td>Idioma del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estado</td>
+                                            <td>ENUM('Disponible','Prestado','Reservado')</td>
+                                            <td>Estado del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Visitas</td>
+                                            <td>INT</td>
+                                            <td>Cantidad de visitas del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gustados</td>
+                                            <td>INT</td>
+                                            <td>Cantidad de gustados del libro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Categorias</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CategoriaID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único de la categoría</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NombreCategoria</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Nombre de la categoría</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Libros_categorias</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CategoriaID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único de la categoría</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Usuarios</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>UsuarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nombre</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Nombre del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CorreoElectronico</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Correo electronico del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Imagen</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Imagen del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Contraseña</td>
+                                            <td>VARCHAR(255)</td>
+                                            <td>Contraseña del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RollID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del rol del usuario</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Roles</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>RollID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del rol</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NombreRol</td>
+                                            <td>ENUM('propietario','admin','mod','user')</td>
+                                            <td>Nombre del rol</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Comentarios</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ComentarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del comentario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>UsuarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del usuario que comenta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro al que se le ha comentado</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comentario</td>
+                                            <td>TEXT</td>
+                                            <td>Comentario del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FechaComentario</td>
+                                            <td>DATE</td>
+                                            <td>Fecha de la publicación del comentario</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Favoritos</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>FavoritoID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del favorito</td>
+                                        </tr>
+                                        <tr>
+                                            <td>UsuarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Gustados</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GustadoID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del gustado</td>
+                                        </tr>
+                                        <tr>
+                                            <td>UsuarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Ver mas tarde</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TardeID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>UsuarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="subtitle">Historial</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>HistorialID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del historial</td>
+                                        </tr>
+                                        <tr>
+                                            <td>UsuarioID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del usuario</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LibroID</td>
+                                            <td>INT</td>
+                                            <td>Identificador único del libro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FechaAccion</td>
+                                            <td>DATE</td>
+                                            <td>Fecha de la acción</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="block">
+                                <h2 class="title-small">Inicio de sesión y registro</h2>
+
+                                <h3 class="subtitle">Inicio de sesión</h3>
+                                <ul>
+                                    <li><span class="strong">Paso 1:</span> Ingresa a la página de inicio de sesión.</li>
+                                    <li><span class="strong">Paso 2:</span> Introduce tu correo electrónico y contraseña.</li>
+                                    <li><span class="strong">Paso 3:</span> Haz clic en el botón "Iniciar sesión".</li>
+                                    <li><span class="strong">Problemas Comunes:</span> Recuperación de contraseña, errores al iniciar sesión.</li>
+                                </ul>
+
+                                <h3 class="subtitle">Registro</h3>
+                                <ul>
+                                    <li><span class="strong">Paso 1:</span> Dirígete a la sección "Iniciar sesión".</li>
+                                    <li><span class="strong">Paso 2:</span> Ir a crear cuenta</li>
+                                    <li><span class="strong">Paso 3:</span> Completa el formulario con tus datos personales.</li>
+                                    <li><span class="strong">Paso 4:</span> Confirma tu registro.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</main>
+		</div>
+        <script src="js/apiActions.js"></script>
+		<script src="js/cambiarTema.js"></script>
+	</body>
+</html>
+
+<script src="js/previsualizarImagen.js"></script>

@@ -110,13 +110,13 @@ class BookController {
 
     editById = async (req, res, next) => {
         const { id } = req.params
-        const { title, author, date, isbn, publisher, pages, language, state, synopsis, categories, file } = req.body
+        const { title, author, date, isbn, publisher, pages, language, state, synopsis, categories, file, pdfLink } = req.body
 
         try {
             if(isNaN(id)) 
                 throw new ClientError('id must be a number')
 
-            await this.bookModel.editById({ id, title, author, date, isbn, publisher, pages, language, state, categories, synopsis, file })
+            await this.bookModel.editById({ id, title, author, date, isbn, publisher, pages, language, state, categories, synopsis, file, pdfLink })
             res.status(200).json({ message: 'edited' })
         } catch(err) {
             console.log(err)

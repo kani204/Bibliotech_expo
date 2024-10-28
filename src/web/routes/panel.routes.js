@@ -56,8 +56,29 @@ panelRouter.get('/panel/books/:id/edit', async (req, res) => {
     )
 })
 
-panelRouter.post('/panel/books/:id/edit', async (req, res) => {
+panelRouter.post('/panel/books/:id/edit', createBookValidator, async (req, res) => {
     const { id } = req.params
+    const { username, userId, role } = req.session
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        console.log(errors.array())
+
+        const [book] = await (await fetch(`${apiUrl}/book/${id}`, { method: 'GET' })).json()
+        if (book.error) {
+            return res.redirect('/panel/error')
+        }
+
+        return res.render('panel/editBook',
+            {
+                title: 'Bibliotech - Editar Libro', errors: errors.array(), values: req.body, book,
+                user: {
+                    username, userId, role
+                }
+            }
+        )
+    }
+
     const { title, author, isbn, date, pages, language, state, publisher, synopsis, image, pdfLink, categories } = req.body
     const file = req.file ? `/uploads/${req.file.filename}` : null
 

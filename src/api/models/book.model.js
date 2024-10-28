@@ -255,10 +255,10 @@ class BookModel {
      * @param {string} synopsis - sinopsis del libro
      * @param {object} file - imagen del libro
      */
-    static async editById({ id, title, author, date, isbn, pages, language, publisher , state, synopsis, categories, file }) {
+    static async editById({ id, title, author, date, isbn, pages, language, publisher , state, synopsis, categories, file, pdfLink }) {
         // Si el usuario ingreso una portada se le agrega a la consulta el campo "imagen"
-        let sql = `UPDATE libros SET Titulo = '${title}', Autor = '${author}', Editorial = '${publisher}', FechaLanzamiento = '${date}', ISBN = '${isbn}', CantidadPaginas = '${pages}', Idioma = '${language}', Estado = '${state}', Sinopsis = '${synopsis}' WHERE LibroID = ${id};`
-        if(file) sql = `UPDATE libros SET Titulo = '${title}', Autor = '${author}', Editorial = '${publisher}', FechaLanzamiento = '${date}', ISBN = '${isbn}', CantidadPaginas = '${pages}', Idioma = '${language}', Estado = '${state}', Sinopsis = '${synopsis}', imagen = '${file}' WHERE LibroID = ${id};`
+        let sql = `UPDATE libros SET Titulo = '${title}', Autor = '${author}', Editorial = '${publisher}', FechaLanzamiento = '${date}', ISBN = '${isbn}', CantidadPaginas = '${pages}', Idioma = '${language}', Estado = '${state}', Sinopsis = '${synopsis}', pdf_link = '${pdfLink}' WHERE LibroID = ${id};`
+        if(file) sql = `UPDATE libros SET Titulo = '${title}', Autor = '${author}', Editorial = '${publisher}', FechaLanzamiento = '${date}', ISBN = '${isbn}', CantidadPaginas = '${pages}', Idioma = '${language}', Estado = '${state}', Sinopsis = '${synopsis}', imagen = '${file}', pdf_link = '${pdfLink}' WHERE LibroID = ${id};`
 
         if(typeof categories == 'object' && categories.length > 0) {
             // Eliminar todas los generos que tenia antes el libro

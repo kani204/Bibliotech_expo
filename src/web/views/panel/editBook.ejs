@@ -26,20 +26,64 @@
                                 <div class="columna">
                                     <h4>Titulo</h4>
                                     <input type="text" value="<%- book.title %>" placeholder="..." name="title">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'title')) { %>
+                                            <p class="error" id="nameError">Escribe un titulo valido.</p>
+                                        <% } %>
+                                    <%}%>
+
                                     <h4>Autor</h4>
                                     <input type="text" value="<%- book.author %>" placeholder="..." name="author">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'author')) { %>
+                                            <p class="error" id="nameError">Escribe un autor valido.</p>
+                                        <% } %>
+                                    <%}%>
+
                                     <h4>ISBN</h4>
                                     <input type="text" value="<%- book.isbn %>" placeholder="..." name="isbn">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'isbn')) { %>
+                                            <p class="error" id="nameError">Escribe un ISBN valido.</p>
+                                        <% } %>
+                                    <%}%>
+
+                                    <% const fecha = new Date(book.date) %>
+                                    <% const fechaFormateada = fecha.toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-') %>
+                                    <% console.log(fechaFormateada) %>
                                     <h4>Publicación</h4>
-                                    <input type="date" value="<%- book.date %>" placeholder="..." name="date">
+                                    <input type="date" value="<%- fechaFormateada %>" placeholder="..." name="date">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'date')) { %>
+                                            <p class="error" id="nameError">Escribe una fecha valida.</p>
+                                        <% } %>
+                                    <%}%>  
                                 </div>
                                 <div class="columna">
                                     <h4>Cantidad de paginas</h4>
                                     <input type="text" value="<%- book.pages %>" placeholder="..." name="pages">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'pages')) { %>
+                                            <p class="error" id="nameError">Escribe un numero de paginas valido.</p>
+                                        <% } %>
+                                    <%}%>
+
                                     <h4>Idioma</h4>
                                     <input type="text" value="<%- book.language %>" placeholder="..." name="language">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'language')) { %>
+                                            <p class="error" id="nameError">Escribe idioma valido.</p>
+                                        <% } %>
+                                    <%}%>
+
                                     <h4>Editorial</h4>
                                     <input type="text" value="<%- book.publisher %>" placeholder="..." name="publisher">
+                                    <% if(typeof errors != 'undefined') { %>
+                                        <% if(errors.find(error => error.path == 'publisher')) { %>
+                                            <p class="error" id="nameError">Escribe una editorial valida.</p>
+                                        <% } %>
+                                    <%}%>
+
                                     <h4>Estado</h4>
                                     <select name="state">
                                         <option value="disponible">Disponible</option>
@@ -49,8 +93,20 @@
                             </div>
                             <h4>Sinopsis</h4>
                             <textarea name="synopsis" class="sinopsis"><%- book.synopsis %></textarea>
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'synopsis')) { %>
+                                    <p class="error" id="nameError">Escribe una sinopsis valida.</p>
+                                <% } %>
+                            <%}%>
+
                             <h4>PDF Link</h4>
                             <input type="text" value="<%- book.pdf %>" placeholder="..." name="pdfLink">
+                            <% if(typeof errors != 'undefined') { %>
+                                <% if(errors.find(error => error.path == 'pdfLink')) { %>
+                                    <p class="error" id="nameError">Escribe un link de pdf valido.</p>
+                                <% } %>
+                            <%}%>
+
                             <h4>Categorías</h4>
                             <div class="categorias">
                                 <div>

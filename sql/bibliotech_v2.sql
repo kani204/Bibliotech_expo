@@ -182,7 +182,7 @@ CREATE TABLE `libros` (
   `LibroID` int(11) NOT NULL,
   `Titulo` varchar(255) DEFAULT NULL,
   `Autor` varchar(255) DEFAULT NULL,
-  `ISBN` varchar(13) DEFAULT NULL,
+  `ISBN` varchar(30) DEFAULT NULL,
   `FechaLanzamiento` date DEFAULT current_timestamp(),
   `FechaPublicacion` datetime NOT NULL DEFAULT current_timestamp(),
   `CantidadPaginas` int(11) DEFAULT NULL,

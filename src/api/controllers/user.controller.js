@@ -32,7 +32,7 @@ class UserController {
             
             res.status(200).json({ message: 'created', error: false })
         } catch(err) {
-            console.log(err)
+            next(err)
         }
     }
 

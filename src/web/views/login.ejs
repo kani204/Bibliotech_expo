@@ -23,10 +23,13 @@
 
             <% if(typeof error != 'undefined') { %>
                 <% if(error == 'user_not_exist') { %>
-                    <span class="error">Este usuario no existe.</span>
+                    <span class="error">Este email no existe.</span>
                 <% } %>
                 <% if(error == 'invalid_password') { %>
                     <span class="error">La contraseña es invalida.</span>
+                <% } %>
+                <% if(error == true) { %>
+                    <span class="error">Ocurrio un error inesperado.</span>
                 <% } %>
             <% } %>
             
@@ -34,6 +37,22 @@
         </form>
         <a href="/register">¿No te has registrado? Crea una cuenta.</a>
     </main>
+
+    <% if(typeof account_created != 'undefined') { %> 
+        <% if(account_created == "true") { %> 
+            <div class="notificacion" style="display: flex;border-top-color: greenyellow;">
+                <i class="fa-solid fa-check"></i>
+                <p>Cuenta creada correctamente.</p>
+            </div>
+
+            <script>
+                const noti = document.querySelector('.notificacion')
+                setTimeout(() => {
+                    noti.style.display = "none"
+                }, 5000)
+            </script>
+        <% } %>
+    <% } %>
 
     <script src="js/cambiarTema.js"></script>
     <script src="js/validarFormularioLogin.js"></script>

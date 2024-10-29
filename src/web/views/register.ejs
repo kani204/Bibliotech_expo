@@ -25,6 +25,17 @@
             <input type="password" id="password" name="password" placeholder=". . ." required maxlength="16">
             <p class="hidden" id="messageMessageError">Escribe más de tres caracteres como minimo.</p>
 
+            <% if(typeof error != 'undefined') { %>
+                <% if(error == 'username_used') { %>
+                    <span class="error">Este nombre de usuario esta en uso.</span>
+                <% } %>
+                <% if(error == 'email_used') { %>
+                    <span class="error">El email esta en uso.</span>
+                <% } %>
+                <% if(error == true) { %>
+                    <span class="error">Ocurrio un error inesperado.</span>
+                <% } %>
+            <% } %>
             <button id="formButton" type="submit">Registrarse</button>
         </form>
         <a href="/login">¿Ya tienes una cuenta? Inicia sesión.</a>

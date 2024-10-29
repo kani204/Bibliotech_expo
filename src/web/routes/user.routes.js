@@ -6,11 +6,11 @@ import config from '../config.json' with { type: 'json' }
 const apiUrl = config["apiUrl"]
 
 userRouter.get('/login', async (req, res) => {
-    const { error } = req.query
+    const { error, account_created } = req.query
 
     res.render('login',
         {
-            title: "Bibliotech - Iniciar sesión", error
+            title: "Bibliotech - Iniciar sesión", error, account_created
         }
     )
 })
@@ -30,8 +30,17 @@ userRouter.post('/login', async (req, res) => {
 
     const user = await response.json()
 
-    if (!response.ok)
-        return res.redirect(`/login?error=${user.error}`)
+    if (!response.ok) { 
+        if(user.message.includes('email')) {
+            return res.redirect(`/login?error=user_not_exist`)
+        }
+
+        if(user.message.includes('password')) {
+            return res.redirect(`/login?error=invalid_password`)
+        }
+
+        return res.redirect('/login/error=true')
+    }
 
     req.session.userId = user.id
     req.session.username = user.username
@@ -42,9 +51,11 @@ userRouter.post('/login', async (req, res) => {
 })
 
 userRouter.get('/register', async (req, res) => {
+    const { error } = req.query
+
     res.render('register',
         {
-            title: 'Bibliotech - Registro'
+            title: 'Bibliotech - Registro', error
         }
     )
 })
@@ -63,13 +74,20 @@ userRouter.post('/register', async (req, res) => {
     )
 
     if (!response.ok) { 
-        const { message, error } = await response.json()
-        console.log(message, error)
-        
-        return res.status(404).redirect('/register')
+        const { message } = await response.json()
+
+        if(message.includes('username')) {
+            return res.redirect('/register?error=username_used')
+        }
+
+        if(message.includes('email')) {
+            return res.redirect('/register?error=email_used')
+        }
+
+        return res.redirect('/register?error=true')
     }
 
-    res.status(200).redirect('/login')
+    res.redirect('/login?account_created=true')
 })
 
 userRouter.get('/logout', async (req, res) => {

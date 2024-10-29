@@ -1,6 +1,42 @@
 <nav class="navbar">
     <div class="navbar-header">
       <a href="/">Bibliotech</a>
+      <form action="/catalog" method="GET" class="formularioNav">
+        <input type="text" placeholder="Titulo del libro" name="title">
+        <button type="submit">Buscar</button>
+      </form>
+
+      <style>
+        .formularioNav {
+          display: none;
+          align-items: center;
+          gap: 10px;
+        }
+        .formularioNav input {
+          border: 0;
+          background-color: var(--color-fondo-secundario);
+          border-radius: 5px;
+          padding: 10px 15px;
+          color: #fff;
+          outline: none;
+        }
+
+        .formularioNav button {
+          all: unset;
+          font-size: 16px;
+          font-family: system-ui;
+          background-color: var(--color-primario);
+          border-radius: 5px;
+          padding: 7px 20px;
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+
+        .formularioNav button:hover {
+          background-color: var(--color-primario-hover);
+        }
+      </style>
+
     </div>
     <img src="img/menu-negro.png" class="menuImg" id="navbarMenu">
     <ul class="navbar-body" id="navbarBody">
@@ -29,6 +65,25 @@
       <% } %>
     </ul>
   </nav>
+
+  <script>
+    const header = document.querySelector('.navbar-header')
+    const form = document.querySelector('.formularioNav')
+
+    window.onscroll = (e) => {
+      const scroll = window.scrollY
+      
+      if(scroll >= 250 && window.location.href.includes('catalog')) {
+        header.style.display = 'flex'
+        header.style.alignItems = 'center'
+        header.style.gap = '15px'   
+
+        form.style.display = 'flex'
+        return
+      } 
+      form.style.display = 'none'
+    }
+  </script>
 
   <script src="js/navbar.js"></script>
   

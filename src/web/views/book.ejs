@@ -41,6 +41,30 @@
                 </div>      
             </div>
         </div>
+        <% if(typeof view_mode != 'undefined') { %> 
+          <% if(view_mode == 'panel') { %>
+            <a href="/panel/books" class="volverPanel">
+              Volver al panel
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <style>
+              .volverPanel {
+                padding: 10px 15px;
+                border-radius: 5px;
+                color: #fff;
+                font-weight: 700;
+                font-family: system-ui, sans-serif;
+                background-color: rgb(120, 180, 28);
+                position: fixed;
+                top: 100px;
+                z-index: 500;
+                right: 23%;
+                transform: translate(50%);
+              }
+            </style>
+          <% } %>
+        <% } %>
         <div class="notificacion" id="notificacion">
           <i class="fa-solid fa-x"></i>
           <p>Este libro ya esta añadido a tu lista de ver luego.</p>

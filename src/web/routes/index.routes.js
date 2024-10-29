@@ -76,6 +76,7 @@ indexRouter.get('/book/:bookId', async (req, res) => {
     const { username, role, userId } = req.session
     const { bookId } = req.params
     const { format } = res.locals
+    const { view_mode } = req.query
 
     const book = await (await fetch(`${apiUrl}/book/${bookId}`, { method: 'GET' })).json()
 
@@ -100,7 +101,7 @@ indexRouter.get('/book/:bookId', async (req, res) => {
 
     res.render('book',
         {
-            title: `Bibliotech - ${book[0].title}`, book, comments, format,
+            title: `Bibliotech - ${book[0].title}`, book, comments, format, view_mode,
             user: { username, role, userId }
         }
     )

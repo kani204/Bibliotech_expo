@@ -42,6 +42,7 @@
     <img src="img/menu-negro.png" class="menuImg" id="navbarMenu">
     <ul class="navbar-body" id="navbarBody">
       <li><img src="/img/sol.svg" id="sol" class="sol"></li>
+      <li><a href="javascript: history.go(-1)" id="backButton">Volver atrás</a></li>
       <li><a href="/">Inicio</a></li>
       <li><a href="/catalog">Catálogo</a></li>
       <% if(typeof user.role != 'undefined') { %>
@@ -66,6 +67,36 @@
       <% } %>
     </ul>
   </nav>
+
+  <!--Boton para volver atras-->
+  <script>
+    window.onload = function() {
+    const backButton = document.getElementById('backButton');
+  
+    // Función para comprobar si el historial tiene más de una página
+    const checkHistory = () => {
+      if (window.history.length <= 1) {
+        //si no hay historial no se muestra el boton
+        backButton.style.display = 'none';
+      } else {
+        backButton.style.display = 'block';
+      }
+    }
+
+    // si estamos en la pagina inicial, aseguramos que no hay historial previo
+    if (window.location.pathname === '/') {
+      // asegurar que el historial se inicializa con solo esta página
+      if (window.history.length > 1) {
+        window.history.replaceState({}, document.title); // Reemplazar el estado para no tener historial
+      }
+      backButton.style.display = 'none'; //se oculta el boton
+    } else {
+      // en otras paginas se ve si hay historial
+      checkHistory();
+    }
+
+  }
+  </script>
 
   <script>
     const header = document.querySelector('.navbar-header')

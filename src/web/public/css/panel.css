@@ -91,6 +91,10 @@
     width: 100%;
 }
 
+.panel nav a{
+    margin: 0px 10px 0px 10px;
+}
+
 .panel h1 {
     color: var(--color-letra);
     margin: 40px 0 5px 40px;

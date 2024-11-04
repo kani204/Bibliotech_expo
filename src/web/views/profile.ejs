@@ -117,6 +117,30 @@
                 <%}%>
             <%}%>
         </section>
+        <% if(typeof view_mode != 'undefined') { %> 
+            <% if(view_mode == 'panel') { %>
+              <a href="/panel/books" class="volverPanel">
+                Volver al panel
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <style>
+                .volverPanel {
+                    padding: 10px 15px;
+                    border-radius: 5px;
+                    color: #fff;
+                    font-weight: 700;
+                    font-family: system-ui, sans-serif;
+                    background-color: var(--color-primario);
+                    position: fixed;
+                    top: 100px;
+                    z-index: 500;
+                    right: 23%;
+                    transform: translate(170%);
+              }
+              </style>
+            <% } %>
+          <% } %>
+
     </main>
     <footer class="footerContainer">
         <%- include('partials/footer.ejs') %>
